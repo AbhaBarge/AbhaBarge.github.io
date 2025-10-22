@@ -1,511 +1,636 @@
 <!DOCTYPE html>
 <html lang="en">
-   <head>
-      <!-- basic -->
-      <meta charset="utf-8">
-      <meta http-equiv="X-UA-Compatible" content="IE=edge">
-      <!-- mobile metas -->
-      <meta name="viewport" content="width=device-width, initial-scale=1">
-      <meta name="viewport" content="initial-scale=1, maximum-scale=1">
-      <!-- site metas -->
-      <title>AbhaBarge</title>
-      <meta name="keywords" content="">
-      <meta name="description" content="">
-      <meta name="author" content="">
-      <!-- bootstrap css -->
-      <link rel="stylesheet" href="css/bootstrap.min.css">
-      <!-- style css -->
-      <link rel="stylesheet" href="css/style.css">
-      <!-- responsive-->
-      <link rel="stylesheet" href="css/responsive.css">
-      <!-- awesome fontfamily -->
-      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-      <!--[if lt IE 9]>
-      <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
-      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script><![endif]-->
-   </head>
-   <!-- body -->
-   <body class="main-layout">
-      <!-- loader  -->
-      <div class="loader_bg">
-         <div class="loader"><img src="images/loading.gif" alt="" /></div>
+<head>
+  <!-- Basic meta -->
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Abha Barge — Portfolio</title>
+
+  <!-- Bootstrap (CSS) -->
+  <link
+    href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css"
+    rel="stylesheet"
+    integrity="sha384-Gn5384xqQ1aoWXA+058RXPXHg5a4h7y9h8v3bUQ5y7SkvZ0pT+0tKfQ5LJce6q2c"
+    crossorigin="anonymous"
+  />
+
+  <!-- Google Font -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
+
+  <!-- Custom CSS (embedded for convenience) -->
+  <style>
+    /* -------------------------
+       Theme & Base
+       ------------------------- */
+    :root{
+      --bg: #071026; /* deep navy */
+      --card: linear-gradient(135deg, rgba(70,30,120,0.14), rgba(10,150,200,0.06));
+      --glass: rgba(255,255,255,0.03);
+      --neon-1: #00f0ff;
+      --neon-2: #c86bff;
+      --accent: linear-gradient(90deg, #00f0ff, #c86bff);
+      --muted: rgba(255,255,255,0.55);
+      --glass-border: rgba(255,255,255,0.06);
+      --card-radius: 14px;
+      --max-width: 1100px;
+    }
+
+    html,body{
+      height:100%;
+      background: radial-gradient(1200px 600px at 10% 10%, rgba(10,30,70,0.65), transparent),
+                  radial-gradient(1200px 600px at 90% 90%, rgba(40,0,80,0.55), transparent),
+                  var(--bg);
+      font-family: 'Poppins', system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+      color: #eaf6ff;
+      -webkit-font-smoothing:antialiased;
+      -moz-osx-font-smoothing:grayscale;
+      scroll-behavior: smooth;
+    }
+
+    a { color: var(--neon-1); text-decoration: none; }
+    a:hover { color: var(--neon-2); text-decoration: none; }
+
+    /* Container */
+    .page-container {
+      max-width: var(--max-width);
+      margin: 0 auto;
+      padding: 40px 20px;
+    }
+
+    /* -------------------------
+       Header / Nav
+       ------------------------- */
+    .site-nav {
+      backdrop-filter: blur(6px);
+      background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+      border: 1px solid var(--glass-border);
+      border-radius: 12px;
+      padding: 10px 18px;
+      position: sticky;
+      top: 18px;
+      z-index: 50;
+      box-shadow: 0 6px 30px rgba(0,0,0,0.5);
+    }
+    .site-brand {
+      font-weight:700;
+      letter-spacing:0.4px;
+      background: -webkit-linear-gradient(45deg,#00f0ff,#c86bff);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    .nav-link {
+      color: var(--muted) !important;
+      transition: color .18s ease, transform .18s ease;
+    }
+    .nav-link:hover {
+      color: #fff !important;
+      transform: translateY(-2px);
+    }
+
+    /* -------------------------
+       Hero
+       ------------------------- */
+    .hero {
+      min-height: calc(100vh - 140px);
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      padding: 60px 0;
+    }
+    .hero-card {
+      width: 100%;
+      background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+      border: 1px solid var(--glass-border);
+      border-radius: 18px;
+      padding: 36px;
+      box-shadow: 0 10px 40px rgba(3,6,20,0.6);
+    }
+    .hero-intro {
+      max-width: 780px;
+    }
+    .hero h1 {
+      font-size: clamp(28px, 4vw, 44px);
+      margin-bottom:10px;
+      line-height:1.02;
+      font-weight:700;
+    }
+    .role {
+      display:inline-block;
+      padding:6px 12px;
+      border-radius:999px;
+      background: linear-gradient(90deg, rgba(0,240,255,0.12), rgba(200,107,255,0.06));
+      color: #bfeeff;
+      font-weight:600;
+      margin-bottom: 18px;
+    }
+    .hero p {
+      color: var(--muted);
+      font-size: 1.02rem;
+      margin-bottom: 18px;
+    }
+
+    .cta-row { display:flex; gap:12px; align-items:center; flex-wrap:wrap; }
+    .btn-neon {
+      color: #071026;
+      background: var(--accent);
+      padding: 10px 18px;
+      border-radius: 10px;
+      font-weight:600;
+      box-shadow: 0 8px 30px rgba(200,107,255,0.12);
+      border: none;
+      transition: transform .16s ease, box-shadow .16s ease;
+    }
+    .btn-neon:hover { transform: translateY(-4px); box-shadow: 0 18px 60px rgba(0,240,255,0.08); }
+
+    .social-links a { margin-right:12px; color: var(--muted); font-size:20px; }
+    .social-links a:hover { color: #fff; transform:translateY(-3px); }
+
+    /* -------------------------
+       Section Titles
+       ------------------------- */
+    .section-title {
+      display:flex; align-items:center; gap:12px; margin-bottom:22px;
+    }
+    .section-title h2 {
+      font-weight:700; font-size:20px;
+      background: -webkit-linear-gradient(90deg,#00f0ff,#c86bff);
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+    }
+    .section-sub { color: var(--muted); }
+
+    /* -------------------------
+       Cards (Projects / Experience / Achievements)
+       ------------------------- */
+    .card-futuristic {
+      background: var(--glass);
+      border: 1px solid var(--glass-border);
+      border-radius: var(--card-radius);
+      padding: 18px;
+      transition: transform .22s ease, box-shadow .22s ease;
+      position: relative;
+      overflow: hidden;
+    }
+    .card-futuristic:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 20px 60px rgba(0,0,0,0.6), 0 0 30px rgba(200,107,255,0.06);
+    }
+    .card-icon {
+      width:56px; height:56px; border-radius:12px; display:flex; align-items:center; justify-content:center;
+      margin-right:14px; flex-shrink:0;
+      background: linear-gradient(135deg, rgba(0,240,255,0.12), rgba(200,107,255,0.12));
+      border:1px solid rgba(255,255,255,0.03);
+      font-size:20px;
+      color:#eaf6ff;
+    }
+    .card-title { font-weight:600; margin-bottom:6px; }
+    .card-desc { color: var(--muted); font-size:0.95rem; }
+
+    /* Project grid */
+    .projects-grid { display:grid; grid-template-columns: repeat(auto-fit, minmax(260px,1fr)); gap:18px; }
+
+    /* Skill chips */
+    .skill-chip {
+      display:inline-block; margin:6px 8px 6px 0; padding:8px 12px; border-radius:999px; font-weight:600;
+      background: linear-gradient(90deg, rgba(0,240,255,0.06), rgba(200,107,255,0.03));
+      border:1px solid rgba(255,255,255,0.03);
+      color: #dff9ff;
+      font-size:0.95rem;
+    }
+
+    /* Contact form / contact card */
+    .contact-grid { display:grid; grid-template-columns: 1fr 360px; gap:20px; }
+    @media (max-width:900px){ .contact-grid{ grid-template-columns: 1fr; }  }
+
+    /* Footer */
+    footer { margin-top:40px; color:var(--muted); text-align:center; padding:18px 0; font-size:0.95rem; }
+
+    /* -------------------------
+       Animations via classes (JS will toggle)
+       ------------------------- */
+    .reveal { opacity:0; transform: translateY(20px); transition: opacity .6s ease, transform .6s ease; }
+    .reveal.visible { opacity:1; transform: none; }
+
+    /* small tweaks */
+    .muted { color: var(--muted); }
+    .badge-year { background: rgba(255,255,255,0.02); color:var(--muted); padding:6px 10px; border-radius:8px; font-weight:600; font-size:0.92rem; }
+
+  </style>
+</head>
+<body>
+
+  <!-- =========================
+       NAVIGATION (Bootstrap)
+       ========================= -->
+  <div class="container page-container">
+    <nav class="d-flex align-items-center justify-content-between site-nav">
+      <div class="d-flex align-items-center">
+        <div class="site-brand mr-3">Abha Barge</div>
+        <div class="muted small">Computer Science • AI • Software</div>
       </div>
-      <!-- end loader -->
-      <!-- header -->
-      <header>
-         <div class="header">
-            <div class="container-fluid">
-               <div class="row d_flex">
-                  <div class=" col-md-2 col-sm-3 col logo_section">
-                     <div class="full">
-                        <div class="center-desk">
-                           <div class="logo">
-                              
-                           </div>
-                        </div>
-                     </div>
-                  </div>
-                  <div class="col-md-8 col-sm-9">
-                     <nav class="navigation navbar navbar-expand-md navbar-dark ">
-                        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExample04" aria-controls="navbarsExample04" aria-expanded="false" aria-label="Toggle navigation">
-                        <span class="navbar-toggler-icon"></span>
-                        </button>
-                        <div class="collapse navbar-collapse" id="navbarsExample04">
-                           <ul class="navbar-nav mr-auto">
-                              <li class="nav-item active">
-                                 <a class="nav-link" href="index.html">Home</a>
-                              </li>
-                              <li class="nav-item">
-                                 <a class="nav-link" href="#abt">About</a>
-                              </li>
-                              <li class="nav-item">
-                                 <a class="nav-link" href="#wedo">My Projects</a>
-                              </li>
-                              <li class="nav-item">
-                                 <a class="nav-link" href="index.html"></a>
-                              </li>
-                              <li class="nav-item">
-                                 <a href="https://www.linkedin.com/in/abha-barge-85993b271/"><i class="fa fa-linkedin-square" style="font-size:48px;color:rgb(23, 135, 247)"></i></a>
-                              </li>
-                           </ul>
-                        </div>
-                     </nav>
-                  </div>
-                  
-               </div>
-            </div>
-         </div>
-      </header>
-      <!-- end header -->
-      <!-- start slider section -->
-      <div id="top_section" class=" banner_main">
-         <div class="container">
-            <div class="row">
-               <div class="col-md-12">
-                  <div id="myCarousel" class="carousel slide" data-ride="carousel">
-                     <div class="carousel-inner">
-                        <div class="carousel-item active">
-                           <div class="container-fluid">
-                              <div class="carousel-caption relative">
-                                 <div class="bluid">
-                                    <h1>Hi !<br>I am Abha Barge </h1>
-                                    <p>Third Year Computer Engineering student at <br>MKSSS's Cummins College of Engineering for Women, Pune
-                                    </p>
-                                    <a class="read_more" href="about.html">About Me </a>
-                                 </div>
-                              </div>
-                           </div>
-                        </div>
-                     </div>
-                     <a class="carousel-control-prev" href="#myCarousel" role="button" data-slide="prev">
-                     <i class="fa fa-angle-left" aria-hidden="true"></i>
-                     <span class="sr-only">Previous</span>
-                     </a>
-                     <a class="carousel-control-next" href="#myCarousel" role="button" data-slide="next">
-                     <i class="fa fa-angle-right" aria-hidden="true"></i>
-                     <span class="sr-only">Next</span>
-                     </a>
-                  </div>
-               </div>
-            </div>
-         </div>
+
+      <div>
+        <ul class="nav">
+          <li class="nav-item"><a class="nav-link" href="#home">Home</a></li>
+          <li class="nav-item"><a class="nav-link" href="#about">About</a></li>
+          <li class="nav-item"><a class="nav-link" href="#skills">Skills</a></li>
+          <li class="nav-item"><a class="nav-link" href="#projects">Projects</a></li>
+          <li class="nav-item"><a class="nav-link" href="#experience">Experience</a></li>
+          <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
+        </ul>
       </div>
-      <!-- end slider section -->
-      <!-- we_do -->
-      <div class="we_do" id="wedo">
-         <div class="container">
-            <div class="row">
-               <div class="col-md-12">
-                  <div class="titlepage text_align_center">
-                     <h2>My Projects</h2>
-                  </div>
-               </div>
+    </nav>
+  </div>
+
+  <!-- =========================
+       HERO / HOME
+       ========================= -->
+  <section id="home" class="hero">
+    <div class="page-container hero-card reveal">
+      <div class="row align-items-center">
+        <div class="col-md-8 hero-intro">
+          <span class="role">Bachelor of Technology (CSE) — MKSSS' Cummins College</span>
+          <h1>Hi — I'm Abha Barge</h1>
+          <p>
+            Third-year Computer Engineering student (CGPA 9.2). I build Java projects, ML-driven products and full-stack applications,
+            and I am interested in software engineering, deep learning, and data-driven systems. I have internship experience at Visa Inc. India and research publications in forecasting.
+             
+          </p>
+
+          <div class="cta-row">
+            <a class="btn btn-neon" href="#projects">See Projects</a>
+            <a class="btn btn-outline-light" href="https://github.com/AbhaBarge" target="_blank" rel="noopener">View GitHub</a>
+            <div class="social-links d-flex align-items-center ml-2">
+              <a href="https://www.linkedin.com/in/abhabarge/" target="_blank" rel="noopener" title="LinkedIn"><i class="fa-brands fa-linkedin"></i></a>
+              <a href="https://medium.com/@abhanbarge" target="_blank" rel="noopener" title="Medium"><i class="fa-brands fa-medium"></i></a>
+              <a href="https://leetcode.com/u/AbhaBarge/" target="_blank" rel="noopener" title="LeetCode"><i class="fa-brands fa-code"></i></a>
             </div>
-            <div class="row">
-               <div class="col-md-12">
-                  <div id="we1" class="carousel slide" data-ride="carousel">
-                     <ol class="carousel-indicators">
-                        <li data-target="#we1" data-slide-to="0" class="active"></li>
-                        <li data-target="#we1" data-slide-to="1"></li>
-                        <li data-target="#we1" data-slide-to="2"></li>
-                        <li data-target="#we1" data-slide-to="3"></li>
-                     </ol>
-                     <div class="carousel-inner">
-                        <!--Copy from here-->
-                        <div class="carousel-item active">
-                           <div class="container-fluid">
-                              <div class="carousel-caption we1_do">
-                                 <div class="row">
-                                    <div class="col-md-4">
-                                       <div id="bo_ho" class="we_box text_align_left">
-                                          <i><img src="images/Java_InvestmentPortfolio.png" alt="#"/></i>
-                                          <h3>Investment Portfolio<br>(Console based, using Java)</h3>
-                                          <p>In this console-based group project, we implemented multiple data-structures. My contribution was Graph algorithms, hashmap, Wishlist(Queue) and overall code skeleton development.</p>
-                                          <a class="read_more" href="https://github.com/AbhaBarge/InvestmentPortfolio_consoleBased/tree/main">View on Github</a>
-                                       </div>
-                                    </div>
-                                    <div class="col-md-4">
-                                       <div id="bo_ho" class="we_box text_align_left">
-                                          <i><img src="images/forUsers.png" alt="#"/></i>
-                                          <h3>National top 229/68000 <br>- for Unstop Talent Park-Tech</h3>
-                                          <p>In this individual, personal project, I implemented a deep-learning sequential model, that would utilise time-series data to return a numerical score out of 100, 
-                                             reflecting the user's dedication towards their field of interest.</p>
-                                          <a class="read_more" href="https://github.com/AbhaBarge/UnstopNationals">View on Github</a>
-                                       </div>
-                                    </div>
-                                    <div class="col-md-4">
-                                       <div id="bo_ho" class="we_box text_align_left">
-                                          <i><img src="images/dbmsMiniproj.png" alt="#"/></i>
-                                          <h3>DBMS miniproject <br>College Library Management</h3>
-                                          <p>In this group project, we used MySQL, JQuery, Python and Flask API. My contribution was Creating 4 Entity and 2 Relationship tables. I also implemented all the JQuery functionality for dynamic implementation.</p>
-                                          <a class="read_more" href="https://github.com/AbhaBarge/DataBaseManagementMiniProject">View on Github</a>
-                                       </div>
-                                    </div>
-                                 </div>
-                              </div>
-                           </div>
-                        </div>
-                        <!--Copy till here then paste-->
-                        
-                        
-                     </div>
-                     <a class="carousel-control-prev" href="#we1" role="button" data-slide="prev">
-                     <i class="fa fa-angle-left" aria-hidden="true"></i>
-                     <span class="sr-only">Previous</span>
-                     </a>
-                     <a class="carousel-control-next" href="#we1" role="button" data-slide="next">
-                     <i class="fa fa-angle-right" aria-hidden="true"></i>
-                     <span class="sr-only">Next</span>
-                     </a>
-                  </div>
-               </div>
+          </div>
+        </div>
+
+        <div class="col-md-4 text-center">
+          <!-- Gradient portrait/placeholder -->
+          <div style="width:160px;height:160px;margin:0 auto;border-radius:20px;background:linear-gradient(180deg,#001f27 0%, rgba(0,240,255,0.08) 60%);display:flex;align-items:center;justify-content:center;border:1px solid rgba(255,255,255,0.04);">
+            <div style="width:140px;height:140px;border-radius:16px;background:linear-gradient(135deg,#0a1354,#0f4b6b);display:flex;align-items:center;justify-content:center;color:#dff9ff;font-weight:700;font-size:20px;">
+              AB
             </div>
-         </div>
+          </div>
+
+          <div class="mt-3 muted small">
+            Visa Intern (Summer 2025) · Research Intern (Forecasting) · SWE CCEW Leader
+          </div>
+        </div>
       </div>
-      <!-- end we_do -->
-      <!-- about -->
-      <div id="abt">
-         <div class="container">
-            <div class="row">
-               <div class="col-md-12">
-                  <div style="align-items: center; width: 100%; height: 700px; display: block; background-size: cover; background-position: center center;">
-                    <video src="https://img.youtube.com/vi/JODVpeexrlY/maxresdefault.jpg" muted loop autoplay></video>
-                     <a href="https://medium.com/@abhanbarge"><img src="images/About me.png" alt="about me"></a>
-                     
-                  </div>
-               </div>
-            </div>
-         </div>
+    </div>
+  </section>
+
+  <!-- =========================
+       ABOUT
+       ========================= -->
+  <section id="about" class="page-container mt-4 reveal">
+    <div class="section-title">
+      <h2>About</h2>
+      <div class="section-sub">Education, interests & volunteering</div>
+    </div>
+
+    <div class="row">
+      <div class="col-lg-8">
+        <div class="card-futuristic p-3">
+          <h3 class="card-title">Education</h3>
+          <p class="card-desc">
+            Bachelor of Technology, Computer Science & Engineering — MKSSS's Cummins College of Engineering for Women, Pune (Aug 2022 — Jun 2026). CGPA: <strong>9.2/10</strong>.
+          </p>
+          <hr style="border-color:rgba(255,255,255,0.03)">
+
+          <h3 class="card-title mt-2">Interests</h3>
+          <p class="card-desc">Artificial Intelligence, Data Analysis, Software Development, Mathematics, Statistics.</p>
+
+          <h3 class="card-title mt-2">Volunteering</h3>
+          <p class="card-desc">
+            Tata Pro-Engage website developer (Jan — Apr 2024), Oppia Foundation contributor, SWE CCEW documentation lead & leadership program participant.
+          </p>
+        </div>
       </div>
-      <!-- end about -->
-      <!-- portfolio 
-      <div class="portfolio">
-         <div class="container">
-            <div class="row">
-               <div class="col-md-12">
-                  <div class="titlepage text_align_left">
-                     <h2>We Have Done Portfolio  </h2>
-                  </div>
-               </div>
-            </div>
-            <div class="row">
-               <div class="col-md-6">
-                  <div id="ho_nf" class="portfolio_main text_align_left">
-                     <figure>
-                        <img src="images/prot1.png" alt="#"/>
-                        <div class="portfolio_text">
-                           <div class="li_icon">
-                              <a href="Javascript:void(0)"><i class="fa fa-search" aria-hidden="true"></i></a>
-                              <a href="Javascript:void(0)"><i class="fa fa-link" aria-hidden="true"></i></a>
-                           </div>
-                           <h3>Carrency Dashbord</h3>
-                           <p>There are many variations of passages of Lorem Ipsum available, but the majoraity have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable</p>
-                        </div>
-                     </figure>
-                  </div>
-               </div>
-               <div class="col-md-6">
-                  <div id="ho_nf" class="portfolio_main text_align_left">
-                     <figure>
-                        <img src="images/prot2.png" alt="#"/>
-                        <div class="portfolio_text">
-                           <div class="li_icon">
-                              <a href="Javascript:void(0)"><i class="fa fa-search" aria-hidden="true"></i></a>
-                              <a href="Javascript:void(0)"><i class="fa fa-link" aria-hidden="true"></i></a>
-                           </div>
-                           <h3>Carrency Dashbord</h3>
-                           <p>There are many variations of passages of Lorem Ipsum available, but the majoraity have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable</p>
-                        </div>
-                     </figure>
-                  </div>
-               </div>
-               <div class="col-md-6">
-                  <div id="ho_nf" class="portfolio_main text_align_left">
-                     <figure>
-                        <img src="images/prot3.png" alt="#"/>
-                        <div class="portfolio_text">
-                           <div class="li_icon">
-                              <a href="Javascript:void(0)"><i class="fa fa-search" aria-hidden="true"></i></a>
-                              <a href="Javascript:void(0)"><i class="fa fa-link" aria-hidden="true"></i></a>
-                           </div>
-                           <h3>Carrency Dashbord</h3>
-                           <p>There are many variations of passages of Lorem Ipsum available, but the majoraity have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable</p>
-                        </div>
-                     </figure>
-                  </div>
-               </div>
-               <div class="col-md-6">
-                  <div id="ho_nf" class="portfolio_main text_align_left">
-                     <figure>
-                        <img src="images/prot4.png" alt="#"/>
-                        <div class="portfolio_text">
-                           <div class="li_icon">
-                              <a href="Javascript:void(0)"><i class="fa fa-search" aria-hidden="true"></i></a>
-                              <a href="Javascript:void(0)"><i class="fa fa-link" aria-hidden="true"></i></a>
-                           </div>
-                           <h3>Carrency Dashbord</h3>
-                           <p>There are many variations of passages of Lorem Ipsum available, but the majoraity have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable</p>
-                        </div>
-                     </figure>
-                  </div>
-               </div>
-               <div class="col-md-12">
-                  <a class="read_more" href="portfolio.html">See More</a>
-               </div>
-            </div>
-         </div>
+
+      <div class="col-lg-4">
+        <div class="card-futuristic p-3">
+          <h5 class="card-title">Contact</h5>
+          <p class="card-desc">
+            <strong>Email:</strong> <a href="mailto:abhanbarge@gmail.com">abhanbarge@gmail.com</a><br>
+            <strong>Phone:</strong> +91 80076 73572<br>
+            <strong>Location:</strong> Pune, India
+          </p>
+          <hr style="border-color:rgba(255,255,255,0.03)">
+          <h6 class="card-title">Quick Links</h6>
+          <p class="card-desc">
+            <a href="https://github.com/AbhaBarge" target="_blank" rel="noopener">GitHub</a> ·
+            <a href="https://medium.com/@abhanbarge" target="_blank" rel="noopener">Medium</a> ·
+            <a href="https://www.linkedin.com/in/abhabarge/" target="_blank" rel="noopener">LinkedIn</a>
+          </p>
+        </div>
       </div>
-      -->
-      <!-- end portfolio -->
-      <!-- chose 
-      <div class="chose">
-         <div class="container">
-            <div class="row d_flex">
-               <div class="col-md-12">
-                  <div class="titlepage text_align_left">
-                     <h2>Why Chose us</h2>
-                  </div>
-               </div>
-               <div class="col-lg-5 col-md-4">
-                  <div class="chose_box">
-                     <i><img src="images/chose1.png" alt="#"/></i>
-                     <h3>Project Done </h3>
-                     <strong>1000+</strong>
-                     <a class="read_more" href="Javascript:void(0)">Read More</a>
-                  </div>
-               </div>
-               <div class="col-lg-5 col-md-4">
-                  <div class="chose_box">
-                     <i><img src="images/chose2.png" alt="#"/></i>
-                     <h3>Happy Clients </h3>
-                     <strong>900+</strong>
-                     <a class="read_more" href="Javascript:void(0)">Read More</a>
-                  </div>
-               </div>
-               <div class="col-lg-2 col-md-4">
-                  <div class="chose_box">
-                     <i><img src="images/chose3.png" alt="#"/></i>
-                     <h3>Awards</h3>
-                     <strong>100+</strong>
-                     <a class="read_more" href="Javascript:void(0)">Read More</a>
-                  </div>
-               </div>
-            </div>
-         </div>
+    </div>
+  </section>
+
+  <!-- =========================
+       SKILLS
+       ========================= -->
+  <section id="skills" class="page-container mt-4 reveal">
+    <div class="section-title">
+      <h2>Skills</h2>
+      <div class="section-sub">Languages, tools & frameworks</div>
+    </div>
+
+    <div class="card-futuristic p-3">
+      <!-- Skills populated from resume -->
+      <div class="mb-2">
+        <span class="skill-chip">Java</span>
+        <span class="skill-chip">Python</span>
+        <span class="skill-chip">SQL / MySQL</span>
+        <span class="skill-chip">MongoDB</span>
+        <span class="skill-chip">C</span>
+        <span class="skill-chip">JavaScript</span>
+        <span class="skill-chip">HTML / CSS / jQuery</span>
+        <span class="skill-chip">TensorFlow</span>
+        <span class="skill-chip">PyTorch</span>
+        <span class="skill-chip">scikit-learn</span>
+        <span class="skill-chip">NumPy / Pandas</span>
+        <span class="skill-chip">Linux / Git / Jenkins</span>
       </div>
-       end chose -->
-      <!-- contact
-      <div class="contact">
-         <div class="container">
-            <div class="row ">
-               <div class="col-md-6">
-                  <div class="titlepage text_align_left">
-                     <h2>Get In Touch</h2>
-                  </div>
-                  <form id="request" class="main_form">
-                     <div class="row">
-                        <div class="col-md-12">
-                           <input class="contactus" placeholder="Name" type="type" name=" Name"> 
-                        </div>
-                        <div class="col-md-12">
-                           <input class="contactus" placeholder="Phone Number" type="type" name="Phone Number">                          
-                        </div>
-                        <div class="col-md-12">
-                           <input class="contactus" placeholder="Email" type="type" name="Email">                          
-                        </div>
-                        <div class="col-md-12">
-                           <textarea class="textarea" placeholder="Message" type="type" Message="Name"></textarea>
-                        </div>
-                        <div class="col-md-12">
-                           <button class="send_btn">Send Now</button>
-                        </div>
-                     </div>
-                  </form>
-               </div>
-               <div class="col-md-6">
-                  <div class="titlepage text_align_left">
-                     <h2>What Says Clients</h2>
-                  </div>
-                  <div id="clientsl" class="carousel slide our_clientsl" data-ride="carousel">
-                     <ol class="carousel-indicators">
-                        <li data-target="#clientsl" data-slide-to="0" class="active"></li>
-                        <li data-target="#clientsl" data-slide-to="1"></li>
-                        <li data-target="#clientsl" data-slide-to="2"></li>
-                     </ol>
-                     <div class="carousel-inner">
-                        <div class="carousel-item active">
-                           <div class="container">
-                              <div class="carousel-caption posi_in">
-                                 <div class="clientsl_text">
-                                    <i><img src="images/clint.jpg" alt="#"/></i>
-                                    <h3>Deno <img src="images/icon.png" alt="#"/></h3>
-                                    <p>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem IpsumIt is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum</p>
-                                 </div>
-                              </div>
-                           </div>
-                        </div>
-                        <div class="carousel-item">
-                           <div class="container">
-                              <div class="carousel-caption posi_in">
-                                 <div class="clientsl_text">
-                                    <i><img src="images/clint.jpg" alt="#"/></i>
-                                    <h3>Deno <img src="images/icon.png" alt="#"/></h3>
-                                    <p>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem IpsumIt is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum</p>
-                                 </div>
-                              </div>
-                           </div>
-                        </div>
-                        <div class="carousel-item">
-                           <div class="container">
-                              <div class="carousel-caption posi_in">
-                                 <div class="clientsl_text">
-                                    <i><img src="images/clint.jpg" alt="#"/></i>
-                                    <h3>Deno <img src="images/icon.png" alt="#"/></h3>
-                                    <p>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem IpsumIt is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum</p>
-                                 </div>
-                              </div>
-                           </div>
-                        </div>
-                     </div>
-                     <a class="carousel-control-prev" href="#clientsl" role="button" data-slide="prev">
-                     <i class="fa fa-angle-left" aria-hidden="true"></i>
-                     <span class="sr-only">Previous</span>
-                     </a>
-                     <a class="carousel-control-next" href="#clientsl" role="button" data-slide="next">
-                     <i class="fa fa-angle-right" aria-hidden="true"></i>
-                     <span class="sr-only">Next</span>
-                     </a>
-                  </div>
-               </div>
-            </div>
-         </div>
+
+      <div class="mt-3 muted">
+        I work across full-stack web and machine learning projects, building end-to-end systems from data to deployment.
       </div>
-      contact -->
-      <!-- footer
-      <footer>
-         <div class="footer">
-            <div class="container">
-               <div class="row">
-                  <div class="col-md-3">
-                     <a class="logo_footer" href="index.html"><img src="images/logo_footer.png" alt="#" /></a>
-                  </div>
-                  <div class="col-md-9">
-                     <form class="newslatter_form">
-                        <input class="ente" placeholder="Enter your email" type="text" name="Enter your email">
-                        <button class="subs_btn">Sbscribe Now</button>
-                     </form>
-                  </div>
-                  <div class="col-md-3 col-sm-6"
-                  >
-                     <div class="Informa helpful">
-                        <h3>Useful  Link</h3>
-                        <ul>
-                           <li><a href="index.html">Home</a></li>
-                           <li><a href="about.html">About</a></li>
-                           <li><a href="we_do.html">What we do</a></li>
-                           <li><a href="portfolio.html">Portfolio</a></li>
-                           <li><a href="contact.html">Contact us</a></li>
-                        </ul>
-                     </div>
-                  </div>
-                  <div class="col-md-3 col-sm-6">
-                     <div class="Informa">
-                        <h3>News</h3>
-                        <ul>
-                           <li>It is a long established                            
-                           </li>
-                           <li>fact that a reader will                           
-                           </li>
-                           <li>be distracted by the                           
-                           </li>
-                           <li>readable content of a                              
-                           </li>
-                           <li>page when                          
-                           </li>
-                        </ul>
-                     </div>
-                  </div>
-                  <div class="col-md-3 col-sm-6">
-                     <div class="Informa">
-                        <h3>company</h3>
-                        <ul>
-                           <li>It is a long established                             
-                           </li>
-                           <li>fact that a reader will                            
-                           </li>
-                           <li>be distracted by the                          
-                           </li>
-                           <li>readable content of a                              
-                           </li>
-                           <li>page when                          
-                           </li>
-                        </ul>
-                     </div>
-                  </div>
-                  <div class="col-md-3 col-sm-6">
-                     <div class="Informa conta">
-                        <h3>contact Us</h3>
-                        <ul>
-                           <li> <a href="Javascript:void(0)"> <i class="fa fa-map-marker" aria-hidden="true"></i> Location
-                              </a>
-                           </li>
-                           <li> <a href="Javascript:void(0)"><i class="fa fa-phone" aria-hidden="true"></i> Call +01 1234567890
-                              </a>
-                           </li>
-                           <li> <a href="Javascript:void(0)"> <i class="fa fa-envelope" aria-hidden="true"></i> demo@gmail.com
-                              </a>
-                           </li>
-                        </ul>
-                     </div>
-                  </div>
-               </div>
+    </div>
+  </section>
+
+  <!-- =========================
+       PROJECTS
+       ========================= -->
+  <section id="projects" class="page-container mt-4 reveal">
+    <div class="section-title">
+      <h2>Projects</h2>
+      <div class="section-sub">Selected work (links to repos)</div>
+    </div>
+
+    <div class="projects-grid">
+      <!-- Project 1 -->
+      <div class="card-futuristic d-flex" style="gap:12px;">
+        <div class="card-icon"><i class="fa-solid fa-brain"></i></div>
+        <div>
+          <div class="card-title">Unstop Nationals — Score Predictor</div>
+          <div class="card-desc">Developed a deep-learning model to compute an 'Unstoppable Guarantee Score' from time-spent and engagement metrics. (Tech: Python, jQuery, JS, HTML, CSS). <a href="https://github.com/AbhaBarge/UnstopNationals" target="_blank" rel="noopener">Repo</a></div>
+        </div>
+      </div>
+
+      <!-- Project 2 -->
+      <div class="card-futuristic d-flex" style="gap:12px;">
+        <div class="card-icon"><i class="fa-solid fa-pen-nib"></i></div>
+        <div>
+            <i><img src="images/Java_InvestmentPortfolio.png" alt="#"/></i>
+          <div class="card-title">Handwritten Text Recognition</div>
+          <div class="card-desc">Implemented MLP and CNN models for handwritten text recognition; led a team of 3. (Tech: Python).</div>
+        </div>
+      </div>
+
+      <!-- Project 3 -->
+      <div class="card-futuristic d-flex" style="gap:12px;">
+        <div class="card-icon"><i class="fa-solid fa-book"></i></div>
+        <div>
+            <i><img src="images/Java_InvestmentPortfolio.png" alt="#"/></i>
+          <div class="card-title">College Library Management System</div>
+          <div class="card-desc">End-to-end system with MySQL, Python, Flask API, and jQuery for dynamic UI. <a href="https://github.com/AbhaBarge/DataBaseManagementMiniProject" target="_blank" rel="noopener">Repo</a></div>
+        </div>
+      </div>
+
+      <!-- Project 4 -->
+      <div class="card-futuristic d-flex" style="gap:12px;">
+        <div class="card-icon"><i class="fa-solid fa-chart-line"></i></div>
+        <div>
+            <i><img src="images/Java_InvestmentPortfolio.png" alt="#"/></i>
+          <div class="card-title">Java Stock Market Emulator</div>
+          <div class="card-desc">A console-based project using multiple data structures (Graph, BST, HashTable) to emulate stock operations. <a href="https://github.com/AbhaBarge/InvestmentPortfolio_consoleBased" target="_blank" rel="noopener">Repo</a></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- =========================
+       EXPERIENCE (Cards with icons & hover)
+       ========================= -->
+  <section id="experience" class="page-container mt-4 reveal">
+    <div class="section-title">
+      <h2>Experience & Research</h2>
+      <div class="section-sub">Internships and research publications</div>
+    </div>
+
+    <div class="row" style="gap:18px;">
+      <!-- Visa -->
+      <div class="col-md-6">
+        <div class="card-futuristic d-flex p-3">
+          <div class="card-icon"><i class="fa-solid fa-building-columns"></i></div>
+          <div>
+            <div class="card-title">Visa Inc. India — Software Engineering Intern</div>
+            <div class="card-desc muted">Jun 2025 — Aug 2025. Worked in risk & identity domain for Value Added Services product development.</div>
+            <div class="mt-2"><span class="badge-year">Summer 2025</span></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Innovate to Elevate -->
+      <div class="col-md-6">
+        <div class="card-futuristic d-flex p-3">
+          <div class="card-icon"><i class="fa-solid fa-magnifying-glass-chart"></i></div>
+          <div>
+            <div class="card-title">Innovate to Elevate — Research Intern</div>
+            <div class="card-desc muted">May 2024 — Aug 2024. Published research on univariate and multivariate forecasting using macroeconomic features for stock market prediction.</div>
+            <div class="mt-2"><span class="badge-year">Publication</span></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Volunteering -->
+      <div class="col-md-6">
+        <div class="card-futuristic d-flex p-3">
+          <div class="card-icon"><i class="fa-solid fa-hands-helping"></i></div>
+          <div>
+            <div class="card-title">Tata Pro-Engage — Website Developer</div>
+            <div class="card-desc muted">Jan 2024 — Apr 2024. Collaborated with Tata officials and built features for NGO website; mentored SPOC for maintenance.</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Leadership / SWE -->
+      <div class="col-md-6">
+        <div class="card-futuristic d-flex p-3">
+          <div class="card-icon"><i class="fa-solid fa-users"></i></div>
+          <div>
+            <div class="card-title">Society of Women Engineers (SWE) — Leadership</div>
+            <div class="card-desc muted">Panel member and President roles in college chapter. Completed collegiate leadership program and SWE inclusive leadership certification.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- =========================
+       ACHIEVEMENTS (cards)
+       ========================= -->
+  <section id="achievements" class="page-container mt-4 reveal">
+    <div class="section-title">
+      <h2>Achievements</h2>
+      <div class="section-sub">Selected recognitions & competitions</div>
+    </div>
+
+    <div class="projects-grid">
+      <div class="card-futuristic d-flex p-3">
+        <div class="card-icon"><i class="fa-solid fa-award"></i></div>
+        <div>
+          <div class="card-title">Citi Bridge Trainee — Top 15 / 160+</div>
+          <div class="card-desc muted">Mar 2025 — National selection (Top 15 out of 160+ applicants).</div>
+        </div>
+      </div>
+
+      <div class="card-futuristic d-flex p-3">
+        <div class="card-icon"><i class="fa-solid fa-people-roof"></i></div>
+        <div>
+          <div class="card-title">Deloitte Hackathon — National Finalist</div>
+          <div class="card-desc muted">Mar 2025 — Top 15 out of 2500+ teams.</div>
+        </div>
+      </div>
+
+      <div class="card-futuristic d-flex p-3">
+        <div class="card-icon"><i class="fa-solid fa-trophy"></i></div>
+        <div>
+          <div class="card-title">WorldQuant Brain — Silver Level</div>
+          <div class="card-desc muted">May 2024 — International recognition in the IQC challenge.</div>
+        </div>
+      </div>
+
+      <div class="card-futuristic d-flex p-3">
+        <div class="card-icon"><i class="fa-solid fa-medal"></i></div>
+        <div>
+          <div class="card-title">Unstop Talent Park — National Finalist</div>
+          <div class="card-desc muted">Mar 2024 — Ranked top 229 out of 68,852 participants.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- =========================
+       CONTACT
+       ========================= -->
+  <section id="contact" class="page-container mt-4 reveal">
+    <div class="section-title">
+      <h2>Contact</h2>
+      <div class="section-sub">Get in touch or view resume/publications</div>
+    </div>
+
+    <div class="contact-grid">
+      <!-- Contact form (non-functional placeholder that opens mailto) -->
+      <div>
+        <div class="card-futuristic p-3">
+          <h5 class="card-title">Send a message</h5>
+          <p class="card-desc muted">Click below to open your email client.</p>
+
+          <form onsubmit="location.href='mailto:abhanbarge@gmail.com?subject=Portfolio%20message&body='+encodeURIComponent(document.getElementById('msg').value); return false;">
+            <div class="form-group">
+              <label class="muted small">Message</label>
+              <textarea class="form-control bg-transparent text-white" id="msg" rows="5" placeholder="Write a short message..." style="border:1px solid rgba(255,255,255,0.04);"></textarea>
             </div>
-            <div class="copyright text_align_left">
-               <div class="container">
-                  <div class="row d_flex">
-                     <div class="col-md-6">
-                        <p>© 2020 All Rights Reserved.  <a href="https://html.design/"> Free Html Template</a></p>
-                     </div>
-                     <div class="col-md-6">
-                        <ul class="social_icon text_align_center">
-                           <li> <a href="Javascript:void(0)"><i class="fa fa-facebook-f"></i></a></li>
-                           <li> <a href="Javascript:void(0)"><i class="fa fa-twitter"></i></a></li>
-                           <li> <a href="Javascript:void(0)"><i class="fa fa-linkedin-square" aria-hidden="true"></i></a></li>
-                           <li> <a href="Javascript:void(0)"><i class="fa fa-instagram" aria-hidden="true"></i></a></li>
-                           <li> <a href="Javascript:void(0)"><i class="fa fa-youtube-play" aria-hidden="true"></i></a></li>
-                        </ul>
-                     </div>
-                  </div>
-               </div>
+            <div class="d-flex align-items-center justify-content-between">
+              <button class="btn btn-neon">Email Me</button>
+              <div class="muted small">Or reach out at <a href="mailto:abhanbarge@gmail.com">abhanbarge@gmail.com</a></div>
             </div>
-         </div>
-      </footer>
-      
-       end footer -->
-      <!-- Javascript files-->
-      <script src="js/jquery.min.js"></script>
-      <script src="js/bootstrap.bundle.min.js"></script>
-      <script src="js/jquery-3.0.0.min.js"></script>
-      <script src="js/custom.js"></script>
-   </body>
+          </form>
+        </div>
+      </div>
+
+      <!-- Contact card with links -->
+      <div>
+        <div class="card-futuristic p-3">
+          <h5 class="card-title">Resources</h5>
+          <p class="card-desc">
+            <strong>Resume / Publications</strong><br>
+            <a href="https://link.springer.com/chapter/10.1007/978-3-031-83793-7_6" target="_blank" rel="noopener">Conference chapter (Springer)</a><br>
+            <a href="https://drive.google.com/drive/folders/1-3qzppiX13x4O3jKDw5tZ-FfsC80FBlX" target="_blank" rel="noopener">Drive: supporting files</a>
+          </p>
+
+          <hr style="border-color:rgba(255,255,255,0.03)">
+
+          <div class="mt-2">
+            <a class="btn btn-outline-light btn-sm mb-2" href="https://github.com/AbhaBarge" target="_blank">GitHub</a>
+            <a class="btn btn-outline-light btn-sm mb-2" href="https://www.linkedin.com/in/abhabarge/" target="_blank">LinkedIn</a>
+            <a class="btn btn-outline-light btn-sm mb-2" href="https://medium.com/@abhanbarge" target="_blank">Medium</a>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <div class="page-container muted">
+      © <span id="year"></span> Abha Barge — Built with Bootstrap & custom CSS. Hosted on GitHub Pages.
+    </div>
+  </footer>
+
+  <!-- =========================
+       JS (Bootstrap + small custom JS)
+       ========================= -->
+  <script src="https://code.jquery.com/jquery-3.6.4.min.js"
+    integrity="sha256-VvDrYx1hYlAHrL3pY8a0mFfR0Y1iQ+7+72x+Q6Y5x8M="
+    crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-Fy6S3B9q64WdZWQUiU+q4/2Lc2m9z5n0E6x1q6qzK3+Qj6d8q6H6J6u1W0Q2k1dF"
+    crossorigin="anonymous"></script>
+
+  <script>
+    // Small utilities & interactions
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    // Smooth reveal using IntersectionObserver
+    (function() {
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(e => {
+          if (e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target); }
+        });
+      }, { root: null, rootMargin: '0px 0px -80px 0px', threshold: 0.12 });
+
+      document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+    })();
+
+    // Highlight active nav link while scrolling
+    (function() {
+      const sections = document.querySelectorAll('section[id]');
+      const navLinks = document.querySelectorAll('.nav-link');
+      function onScroll(){
+        const scrollPos = window.scrollY + window.innerHeight/3;
+        sections.forEach(sec => {
+          const top = sec.offsetTop;
+          const bottom = top + sec.offsetHeight;
+          const id = sec.getAttribute('id');
+          if (scrollPos >= top && scrollPos < bottom) {
+            navLinks.forEach(a => a.classList.remove('active'));
+            const link = document.querySelector('.nav-link[href="#'+id+'"]');
+            if (link) link.classList.add('active');
+          }
+        });
+      }
+      window.addEventListener('scroll', onScroll);
+      onScroll();
+    })();
+
+    // Make external links open in new tab and be safe
+    (function() {
+      document.querySelectorAll('a[target="_blank"]').forEach(a => {
+        a.setAttribute('rel', 'noopener noreferrer');
+      });
+    })();
+
+  </script>
+</body>
 </html>
